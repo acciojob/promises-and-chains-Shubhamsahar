@@ -1,7 +1,7 @@
-//your JS code here. If required.
 const form = document.getElementById('form');
 const ageInput = document.getElementById('age');
 const nameInput = document.getElementById('name');
+const messageDiv = document.getElementById('message');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -9,7 +9,7 @@ form.addEventListener('submit', (e) => {
     const name = nameInput.value;
 
     if (isNaN(age) || name === '') {
-        alert('Please enter valid details.');
+        showMessage('Please enter valid details.');
         return;
     }
 
@@ -24,10 +24,12 @@ form.addEventListener('submit', (e) => {
     });
 
     promise.then((name) => {
-        alert(`Welcome, ${name}. You can vote.`);
+        showMessage(`Welcome, ${name}. You can vote.`);
     }).catch((name) => {
-        alert(`Oh sorry ${name}. You aren't old enough.`);
+        showMessage(`Oh sorry ${name}. You aren't old enough.`);
     });
 });
 
-
+function showMessage(message) {
+    messageDiv.innerText = message;
+}
